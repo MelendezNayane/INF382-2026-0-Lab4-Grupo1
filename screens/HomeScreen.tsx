@@ -37,7 +37,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ user, accounts, onNavigate, onT
         <div className="px-6 mb-8">
           <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">ENVIAR DINERO</p>
           <div className="flex gap-6 overflow-x-auto hide-scrollbar">
-            <div onClick={onPayMobile} className="flex flex-col items-center gap-2 flex-shrink-0 cursor-pointer">
+            <div onClick={onPayMobile} className="flex flex-col items-center gap-2 flex-shrink-0 cursor-pointer group active:scale-95 transition-transform">
               <div className="w-14 h-14 bg-dark-app border-2 border-dashed border-blue-600 rounded-full flex items-center justify-center p-3">
                 <div className="w-full h-full bg-blue-600 rounded-md flex items-center justify-center">
                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -45,40 +45,40 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ user, accounts, onNavigate, onT
                    </svg>
                 </div>
               </div>
-              <span className="text-[10px] font-bold text-blue-500 text-center leading-tight">Pagar por<br/>celular</span>
+              <span className="text-[10px] font-bold text-blue-500 text-center leading-tight uppercase tracking-tighter">Pagar por<br/>celular</span>
             </div>
-            <div className="flex flex-col items-center gap-2 flex-shrink-0 cursor-pointer">
+            <div className="flex flex-col items-center gap-2 flex-shrink-0 cursor-pointer active:scale-95 transition-transform">
               <div className="w-14 h-14 bg-gray-800 rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
               </div>
-              <span className="text-[10px] font-bold text-gray-400">Nuevo</span>
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Nuevo</span>
             </div>
           </div>
         </div>
 
         {/* Account Card */}
         <div className="px-6 mb-8">
-          <div className="bg-card-blue rounded-3xl p-6 relative overflow-hidden shadow-xl">
+          <div className="bg-card-blue rounded-[32px] p-7 relative overflow-hidden shadow-2xl">
             {/* Background pattern */}
             <div className="absolute top-0 right-0 opacity-10 pointer-events-none -translate-y-4 translate-x-4">
                <svg className="w-40 h-40" viewBox="0 0 200 200" fill="currentColor"><circle cx="100" cy="100" r="100" /></svg>
             </div>
             
-            <div className="flex justify-between items-start mb-6">
+            <div className="flex justify-between items-start mb-8">
               <div>
-                <p className="text-blue-100 text-sm mb-1">{mainAccount.name}</p>
+                <p className="text-blue-100 text-sm mb-1 font-medium">{mainAccount.name}</p>
                 <div className="flex items-center gap-2">
-                  <h2 className="text-3xl font-bold">
+                  <h2 className="text-3xl font-black">
                     S/ {showBalance ? mainAccount.balance.toLocaleString('en-US', { minimumFractionDigits: 2 }) : '• • • •'}
                   </h2>
                 </div>
-                <p className="text-blue-200 text-xs mt-1">Saldo disponible</p>
+                <p className="text-blue-200 text-xs mt-1 font-bold opacity-80 uppercase tracking-widest">Saldo disponible</p>
               </div>
               <button 
                 onClick={() => setShowBalance(!showBalance)}
-                className="p-2 bg-white/20 rounded-xl hover:bg-white/30 transition-colors"
+                className="p-3 bg-white/20 rounded-2xl hover:bg-white/30 active:scale-90 transition-all backdrop-blur-md"
               >
                 {showBalance ? (
                   <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -95,14 +95,14 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ user, accounts, onNavigate, onT
 
             <div className="flex items-center justify-between">
                <div className="flex -space-x-2">
-                 <div className="w-8 h-8 rounded-full border-2 border-blue-500 bg-orange-100 flex items-center justify-center overflow-hidden">
+                 <div className="w-9 h-9 rounded-full border-2 border-blue-500 bg-orange-100 flex items-center justify-center overflow-hidden">
                    <img src="https://picsum.photos/seed/1/40/40" alt="u1" />
                  </div>
-                 <div className="w-8 h-8 rounded-full border-2 border-blue-500 bg-blue-100 flex items-center justify-center overflow-hidden">
+                 <div className="w-9 h-9 rounded-full border-2 border-blue-500 bg-blue-100 flex items-center justify-center overflow-hidden">
                    <img src="https://picsum.photos/seed/2/40/40" alt="u2" />
                  </div>
                </div>
-               <button className="bg-white text-blue-600 font-bold text-sm px-4 py-2 rounded-xl active:scale-95 transition-transform">
+               <button className="bg-white text-blue-600 font-black text-sm px-6 py-2.5 rounded-2xl active:scale-95 transition-all shadow-lg">
                  Ver movimientos
                </button>
             </div>
@@ -110,20 +110,20 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ user, accounts, onNavigate, onT
         </div>
 
         {/* Quick Operations */}
-        <div className="px-6 mb-8">
+        <div className="px-6 mb-10">
            <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">OPERACIONES RÁPIDAS</p>
            <div className="grid grid-cols-2 gap-4">
-             <div onClick={onTransferSelect} className="bg-gray-900 border border-gray-800 rounded-2xl p-6 flex flex-col items-center gap-4 cursor-pointer active:bg-gray-800 transition-colors">
-               <div className="w-12 h-12 bg-blue-900/30 rounded-full flex items-center justify-center">
-                 <svg className="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <div onClick={onTransferSelect} className="bg-gray-900 border border-gray-800 rounded-[28px] p-6 flex flex-col items-center gap-4 cursor-pointer active:bg-gray-800 active:scale-95 transition-all shadow-lg">
+               <div className="w-14 h-14 bg-blue-900/20 rounded-2xl flex items-center justify-center border border-blue-500/10">
+                 <svg className="w-7 h-7 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                  </svg>
                </div>
                <span className="font-bold text-sm">Transferencias</span>
              </div>
-             <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 flex flex-col items-center gap-4 cursor-pointer active:bg-gray-800 transition-colors">
-               <div className="w-12 h-12 bg-green-900/30 rounded-full flex items-center justify-center">
-                 <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <div className="bg-gray-900 border border-gray-800 rounded-[28px] p-6 flex flex-col items-center gap-4 cursor-pointer active:bg-gray-800 active:scale-95 transition-all shadow-lg">
+               <div className="w-14 h-14 bg-green-900/20 rounded-2xl flex items-center justify-center border border-green-500/10">
+                 <svg className="w-7 h-7 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                  </svg>
                </div>
@@ -132,21 +132,24 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ user, accounts, onNavigate, onT
            </div>
         </div>
 
-        {/* Promo Banner */}
+        {/* Promo Banner - Navigates to Benefits */}
         <div className="px-6">
-           <div className="bg-card-purple rounded-3xl p-6 relative overflow-hidden">
-             <div className="absolute top-4 left-6 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">
-               <span className="text-[10px] font-bold uppercase tracking-wider">Exclusivo</span>
+           <div 
+             onClick={() => onNavigate(Screen.BENEFITS)}
+             className="bg-card-purple rounded-[32px] p-7 relative overflow-hidden active:scale-95 transition-all cursor-pointer shadow-2xl"
+           >
+             <div className="absolute top-4 left-7 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20">
+               <span className="text-[10px] font-black uppercase tracking-widest text-white">Exclusivo Premium</span>
              </div>
-             <div className="mt-8 mb-4">
-               <h3 className="text-xl font-bold">¡Tus Beneficios te esperan!</h3>
-               <p className="text-blue-100 text-xs mt-1">Aprovecha descuentos de hasta 50% en restaurantes y tiendas.</p>
+             <div className="mt-10 mb-6">
+               <h3 className="text-2xl font-black text-white leading-tight">¡Tus Beneficios te esperan!</h3>
+               <p className="text-blue-100 text-xs mt-2 font-medium opacity-80 leading-relaxed">Aprovecha descuentos de hasta 50% en restaurantes y tiendas seleccionadas.</p>
              </div>
-             <button className="bg-white text-blue-600 font-bold text-sm px-6 py-2 rounded-xl">
+             <button className="bg-white text-blue-700 font-black text-sm px-8 py-3 rounded-2xl shadow-xl active:scale-90 transition-transform">
                Ver promociones
              </button>
-             <div className="absolute bottom-4 right-4 opacity-20 scale-150 rotate-12">
-                <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
+             <div className="absolute bottom-4 right-4 opacity-10 scale-[2.5] rotate-[15deg] pointer-events-none">
+                <svg className="w-20 h-20" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M20,6H17.82A3.91,3.91,0,0,0,18,5a4,4,0,0,0-8,0,3.91,3.91,0,0,0,.18,1H2V20a2,2,0,0,0,2,2H20a2,2,0,0,0,2-2V6ZM14,3a2,2,0,0,1,2,2,2.46,2.46,0,0,1-.1,0,2,2,0,0,1-3.9,0A2.46,2.46,0,0,1,12,5,2,2,0,0,1,14,3ZM8,5a2,2,0,0,1,3.9,0A2.46,2.46,0,0,1,12,5a2,2,0,0,1-2,2,2,2,0,0,1-2-2,2.46,2.46,0,0,1,.1-0A2,2,0,0,1,8,5ZM4,8H11v2H4V8Zm0,10V12H11v6H4Zm16,0H13V12h7v6Zm0-8H13V8h7v2Z" />
                 </svg>
              </div>
@@ -167,19 +170,21 @@ interface BottomNavProps {
 
 const BottomNav: React.FC<BottomNavProps> = ({ active, onNavigate }) => {
   return (
-    <div className="absolute bottom-0 left-0 right-0 h-20 bg-gray-900/80 backdrop-blur-lg border-t border-gray-800 flex items-center justify-around px-2 z-10">
+    <div className="absolute bottom-0 left-0 right-0 h-20 bg-gray-900/90 backdrop-blur-xl border-t border-gray-800 flex items-center justify-around px-2 z-10">
       <NavItem icon="home" label="Inicio" active={active === Screen.HOME} onClick={() => onNavigate(Screen.HOME)} />
       <NavItem icon="operations" label="Operaciones" active={active === Screen.TRANSFER_SELECT} onClick={() => onNavigate(Screen.TRANSFER_SELECT)} />
       
       <div className="relative -top-8 flex flex-col items-center">
-        <button 
-          onClick={() => onNavigate(Screen.PAY_MOBILE)}
-          className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/50 border-4 border-dark-app active:scale-90 transition-transform"
-        >
-          <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
-          </svg>
-        </button>
+        <div className="p-1.5 bg-dark-app rounded-full">
+            <button 
+                onClick={() => onNavigate(Screen.PAY_MOBILE)}
+                className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-[0_10px_25px_rgba(37,99,235,0.4)] active:scale-90 transition-transform"
+            >
+                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+                </svg>
+            </button>
+        </div>
         <span className="text-[10px] font-bold text-blue-500 mt-1 uppercase tracking-tighter">Pagar</span>
       </div>
 
@@ -201,11 +206,11 @@ const NavItem: React.FC<{ icon: string, label: string, active?: boolean, onClick
   }
 
   return (
-    <button onClick={onClick} className={`flex flex-col items-center gap-1 ${active ? 'text-blue-500' : 'text-gray-500'}`}>
+    <button onClick={onClick} className={`flex flex-col items-center gap-1 ${active ? 'text-blue-500' : 'text-gray-500'} active:scale-90 transition-all`}>
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         {getIcon()}
       </svg>
-      <span className="text-[10px] font-medium">{label}</span>
+      <span className="text-[10px] font-black uppercase tracking-tighter">{label}</span>
     </button>
   );
 };

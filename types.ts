@@ -9,7 +9,8 @@ export enum Screen {
   TRANSFER_CONFIRM = 'TRANSFER_CONFIRM',
   SUCCESS = 'SUCCESS',
   BENEFITS = 'BENEFITS',
-  PROFILE = 'PROFILE'
+  PROFILE = 'PROFILE',
+  SHARE = 'SHARE'
 }
 
 export interface Contact {
