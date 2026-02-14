@@ -8,7 +8,7 @@ interface TransferSelectScreenProps {
 
 const TransferSelectScreen: React.FC<TransferSelectScreenProps> = ({ onClose, onSelectType }) => {
   return (
-    <div className="flex-1 flex flex-col bg-dark-app p-6 pt-10">
+    <div className="flex-1 flex flex-col bg-dark-app p-6 pt-10 relative h-full">
       <div className="flex items-center justify-between mb-12">
         <div className="w-6"></div>
         <h1 className="text-xl font-bold">Transferir dinero</h1>
@@ -40,27 +40,51 @@ const TransferSelectScreen: React.FC<TransferSelectScreenProps> = ({ onClose, on
              className="bg-transparent flex-1 text-sm text-white placeholder-gray-600"
            />
         </div>
+        
+        {/* Empty state for favorites */}
+        <div className="flex flex-col items-center justify-center py-10 opacity-20">
+          <svg className="w-12 h-12 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.382-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+          </svg>
+          <p className="text-xs font-bold">Aún no tienes favoritos</p>
+        </div>
       </div>
       
-      {/* Footer Nav Bar */}
-      <div className="h-20 flex items-center justify-around absolute bottom-0 left-0 right-0 border-t border-gray-800 bg-gray-900/50">
-        <div className="flex flex-col items-center gap-1 text-gray-600 opacity-50">
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-          <span className="text-[10px]">INICIO</span>
-        </div>
-        <div className="flex flex-col items-center gap-1 text-blue-500">
-           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
-           <span className="text-[10px]">OPERACIONES</span>
-        </div>
-        <div className="w-12"></div>
-        <div className="flex flex-col items-center gap-1 text-gray-600 opacity-50">
-           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5a2 2 0 10-2 2h2zm0 0v4m0 0h2a2 2 0 10-2-2v2zm0 0h-2a2 2 0 102-2v2z"/></svg>
-           <span className="text-[10px]">BENEFICIOS</span>
-        </div>
-        <div className="flex flex-col items-center gap-1 text-gray-600 opacity-50">
-           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-           <span className="text-[10px]">PERFIL</span>
-        </div>
+      {/* Footer Nav Bar Funcional */}
+      <div className="h-24 flex items-center justify-around absolute bottom-0 left-0 right-0 border-t border-gray-800 bg-gray-900/80 backdrop-blur-lg z-50 px-2 pb-4">
+        <button 
+          onClick={onClose}
+          className="flex-1 flex flex-col items-center gap-1 text-gray-500 active:scale-90 transition-transform"
+        >
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          <span className="text-[10px] font-bold">INICIO</span>
+        </button>
+
+        <button className="flex-1 flex flex-col items-center gap-1 text-blue-500">
+           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+           </svg>
+           <span className="text-[10px] font-bold">OPERACIONES</span>
+        </button>
+
+        {/* Hueco para el botón central de Pagar si fuera necesario, o simplemente espaciado */}
+        <div className="w-16"></div>
+
+        <button className="flex-1 flex flex-col items-center gap-1 text-gray-500 opacity-50 cursor-not-allowed">
+           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5a2 2 0 10-2 2h2zm0 0v4m0 0h2a2 2 0 10-2-2v2zm0 0h-2a2 2 0 102-2v2z"/>
+           </svg>
+           <span className="text-[10px] font-bold">BENEFICIOS</span>
+        </button>
+
+        <button className="flex-1 flex flex-col items-center gap-1 text-gray-500 opacity-50 cursor-not-allowed">
+           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+           </svg>
+           <span className="text-[10px] font-bold">PERFIL</span>
+        </button>
       </div>
     </div>
   );
@@ -77,13 +101,13 @@ const TransferTypeBtn: React.FC<{ icon: string, label: string, onClick: () => vo
   }
 
   return (
-    <button onClick={onClick} className="flex-1 flex flex-col items-center gap-3 active:scale-95 transition-transform">
-      <div className="w-16 h-16 bg-blue-900/20 border border-blue-900/30 rounded-2xl flex items-center justify-center">
-        <svg className="w-8 h-8 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <button onClick={onClick} className="flex-1 flex flex-col items-center gap-3 active:scale-95 transition-transform group">
+      <div className="w-16 h-16 bg-blue-900/20 border border-blue-900/30 rounded-2xl flex items-center justify-center group-active:bg-blue-600 group-active:border-blue-400 transition-colors">
+        <svg className="w-8 h-8 text-blue-500 group-active:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           {getIcon()}
         </svg>
       </div>
-      <span className="text-[10px] font-medium text-gray-400 text-center uppercase tracking-tight">{label}</span>
+      <span className="text-[10px] font-bold text-gray-400 text-center uppercase tracking-tight">{label}</span>
     </button>
   );
 }
