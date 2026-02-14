@@ -1,0 +1,7 @@
+{
+  "name": "Banca Móvil Plus",
+  "description": "Una aplicación bancaria móvil moderna con transferencias rápidas, pagos por celular y gestión de cuentas.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
